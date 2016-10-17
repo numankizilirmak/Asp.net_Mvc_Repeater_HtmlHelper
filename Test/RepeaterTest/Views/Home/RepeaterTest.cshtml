@@ -1,0 +1,23 @@
+﻿@using Mvc5RepeaterHelper.Models;
+
+@using Mvc5RepeaterHelper.Helpers;
+
+@{
+    ViewBag.Title = "RepeaterTest";
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<h2>RepeaterTest</h2>
+
+@{
+    RepeaterOptions options = new RepeaterOptions
+    {
+        ExcludedList = new List<string> { "Id" },
+        TitleList = new List<string> { "Ad", "Soyad" },
+        IsDetailEnabled = true,
+        DetailMethodName = "Detail",
+        DetailParameterName = "Id"
+    };
+
+}
+
+@Html.MvcRepeater((int)ViewBag.TotalCount, TempData["pageIndex"] == null ? 1 : (int)TempData["pageIndex"], 5, options)
